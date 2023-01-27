@@ -16,7 +16,7 @@ function Accueil() {
     var [ListeCategorie, setListeCategorie] = useState([]);
     const [nbrenchere,setNombre] =useState(0);
     useEffect(() => {
-        setWait(true);
+        setWait(true);  
         fetch(`http://localhost:8080/Categories/`)
             .then(res => res.json())
             .then(res => {
@@ -59,7 +59,7 @@ function Accueil() {
                 if (res.data !== null) {
                     console.log(res.data)
                     setListe(res.data)
-                    setNombre(Liste.length)
+                    setNombre(Liste.length) 
                 }
                 setWait(false);
             });
