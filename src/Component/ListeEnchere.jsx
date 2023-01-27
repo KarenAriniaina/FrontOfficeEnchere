@@ -1,11 +1,10 @@
 //props=Liste enchere:
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 
 const registerUser = () => {
     console.log("ok");
-    console.log(this.enchere.id);
+    console.log(this.enchere.idEnchere);
     //initialize();
 }
 
@@ -17,7 +16,7 @@ const Enchere = ({ enchere }) => {
                     <h3>{enchere.nom}</h3>
                     <p>{enchere.description}</p>
                     <form onSubmit={registerUser}>
-                        <p><a href='#' class="btn btn-primary" type="submit" role="button">Voir detail</a></p>
+                        <p><a href='#' className="btn btn-primary" type="submit" role="button">Voir detail</a></p>
                     </form>
                 </div>
             </div>
@@ -25,7 +24,7 @@ const Enchere = ({ enchere }) => {
     );
 }
 
-const ListeEnchere = ({ Liste }) => {
+export const ListeEnchere = ({ Liste }) => {
     return (
         <div className="col-md-7">
             <div className="row">
@@ -34,6 +33,16 @@ const ListeEnchere = ({ Liste }) => {
                 }
             </div>
         </div>
+    )
+};
+
+export const ListerCategorie = ({ Liste }) => {
+    return (
+        <>
+            {
+                Liste.map(elements => <option value={elements.idCategorie}>{elements.designation}</option>)
+            }
+        </>
     )
 };
 
