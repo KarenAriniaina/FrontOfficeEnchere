@@ -1,12 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
-import { Table } from 'react-table';
-
 
 const Detail = ({ enchere }) => {
-    const header = ["Nom", "Montant"];
-    
     return (
         <div className='row'>
             <div className='col-md-6'>
@@ -15,20 +11,11 @@ const Detail = ({ enchere }) => {
             <div className='col-md-6'>
                 <p>Nom produit:{enchere.nom}</p>
                 <p>Description : {enchere.description}</p>
-                <p>Duree enchere : {enchere.duree}</p>
                 <p>Prix de base : {enchere.prixDepart}</p>
                 <p>Date mise en enchere : {enchere.date}</p>
+                <p>Date  fin enchere : {enchere.dateFin}</p>
                 <p>Liste client :</p>
-                <table class="table "  >
-                    <Header header={header} />
-
-                    <tbody>
-                        {
-                            enchere.encherir.map(elements => <Tablebody content={elements} />)
-                        }
-                    </tbody>
-                </table>
-
+                <ListeEncherir encherir={enchere.encherir} />
             </div>
         </div>
     );
@@ -37,11 +24,11 @@ const Detail = ({ enchere }) => {
 function Header(props) {
     let r = props.header;
     return (
-        <tr>
-            {
-                r.map(elements => <th>{elements}</th>)
-            }
-        </tr>
+        <thead>
+                {
+                    r.map(elements => <th>{elements}</th>)
+                }
+        </thead>
     );
 }
 function Tablebody(props) {
@@ -55,6 +42,29 @@ function Tablebody(props) {
         </tr>
 
     );
+}
+
+function ListeEncherir(props) {
+    const header = ["Nom", "Montant"];
+    if (props.encherir != undefined) {
+        return (
+            <table className="table "  >
+                <Header header={header} />
+                <tbody>
+                    {
+                        props.encherir.map(elements => <Tablebody content={elements} />)
+                    }
+                </tbody>
+            </table>
+        );
+    }
+    else {
+        return (
+            <table className="table "  >
+                <Header header={header} />
+            </table>
+        );
+    }
 }
 
 
@@ -74,6 +84,5 @@ export const DetailEnchere = ({ Liste }) => {
         </div>
     )
 };
-
 
 export default DetailEnchere;

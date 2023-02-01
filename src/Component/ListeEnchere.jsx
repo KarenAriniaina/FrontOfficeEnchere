@@ -1,6 +1,7 @@
 //props=Liste enchere:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const registerUser = () => {
     console.log("ok");
@@ -16,7 +17,7 @@ const Enchere = ({ enchere }) => {
                     <h3>{enchere.nom}</h3>
                     <p>{enchere.description}</p>
                     <form onSubmit={registerUser}>
-                        <p><a href='#' className="btn btn-primary" type="submit" role="button">Voir detail</a></p>
+                        <p><Link to={"/FicheEnchere/"+enchere.idEnchere} className="btn btn-primary" value="Voir detail" /></p>
                     </form>
                 </div>
             </div>
