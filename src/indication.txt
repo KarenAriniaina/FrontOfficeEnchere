@@ -1,0 +1,3 @@
+ao amn App.js daoly ze lien rehetra tokon ilaina
+ao amn page ze page rehetra tokony hipotra
+ao amn Component daoly ny component react noforonina
