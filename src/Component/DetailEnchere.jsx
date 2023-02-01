@@ -69,6 +69,7 @@ function ListeEncherir(props) {
 
 
 export const DetailEnchere = ({ Liste }) => {
+    console.log(Liste);
     return (
         <div className='row'>
             <div className='col-md-2'></div>
