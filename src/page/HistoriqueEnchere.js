@@ -5,6 +5,7 @@ import { ListeEnchere } from '../Component/ListeEnchere';
 import '../assets/fontawesome/css/all.min.css';
 import '../assets/css/templatemo-style.css';
 import { Link } from 'react-router-dom';
+import Navbar from '../Component/Navbar';
 
 function HistoriqueEnchere() {
     const navige = useNavigate();
@@ -13,7 +14,7 @@ function HistoriqueEnchere() {
     const [wait, setWait] = useState(false);
     const initialize = () => {
         setWait(true);
-        fetch("http://localhost:8080/HistoriqueEncheres/", {
+        fetch("https://serveurenchere2-production.up.railway.app/HistoriqueEncheres/", {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -39,31 +40,13 @@ function HistoriqueEnchere() {
 
     }, []);
     if (wait === true) return (<p>Loading...</p>);
+    if (localStorage.getItem("idClient") === null || localStorage.getItem("token") === null) {
+        console.log(localStorage.getItem("idClient"));
+        navige("/")
+    }
     return (
         <>
-
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-4 active" aria-current="page" href="/">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <Link value="Voir detail" to={"/HistoriqueEnchere"} class="nav-link nav-link-1"> Historique</Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link value="Voir detail" to={"/Deconnexion"} class="nav-link nav-link-1"> Deconnexion</Link>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
+            <Navbar/>
             <div className='col-md-10 text-center'>
                 <div className="panel panel-default" >
                     <div className="panel-heading">
