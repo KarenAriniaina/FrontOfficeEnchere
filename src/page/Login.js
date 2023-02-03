@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../css/Login.css';
+
+import '../assets/plugins/fontawesome-free/css/all.min.css';
+import '../assets/dist/css/adminlte.min.css';
 
 function Login() {
     const navige = useNavigate();
-    useEffect(()=>{
+    useEffect(() => {
         if (localStorage.getItem("idClient") != null && localStorage.getItem("token") != null) {
             navige("/");
         }
-    },[]);
+    }, []);
     const [email, setEmail] = useState("");
     const [password, setpassword] = useState("");
     const [error, setError] = useState("");
@@ -41,32 +45,45 @@ function Login() {
         initialize();
     }
     return (
-        <div className="row col-md-offset-6">
-            <form onSubmit={registerUser} id="form">
-                <h1>Se connecter</h1>
-                <div className=" col-md-6">
-                    <div className="form-group">
-                        <label htmlFor="cat">Email</label>
-                        <input type="text" onChange={(e) => { setEmail(e.target.value) }} />
+        <>
+    
+
+
+
+        {/*  */}
+
+            <div class="flex-container">
+
+
+                <form onSubmit={registerUser} id="form">
+                    <h1>Se connecter</h1>
+                    <div className=" col-md-6">
+                        <div className="form-group">
+                            <label htmlFor="cat">Email</label>
+                            <input type="text" onChange={(e) => { setEmail(e.target.value) }} />
+                        </div>
                     </div>
-                </div>
-                <div className=" col-md-6">
-                    <div className="form-group">
-                        <label htmlFor="cat">Mot de passe</label>
-                        <input type="password" onChange={(e) => { setpassword(e.target.value) }} />
+                    <div className=" col-md-6">
+                        <div className="form-group">
+                            <label htmlFor="cat">Mot de passe</label>
+                            <input type="password" onChange={(e) => { setpassword(e.target.value) }} />
+                        </div>
                     </div>
-                </div>
-                <div className='col-md-4'></div>
-                <div className='col-md-2'></div>
-                <div className="col-md-6">
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary" >Se connecter</button>
+                    <div className='col-md-4'></div>
+                    <div className='col-md-2'></div>
+                    <div className="col-md-6">
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-primary" >Se connecter</button>
+                        </div>
                     </div>
-                </div>
-                <div className='col-md-4'></div>
-            </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-        </div>
+                    <div className='col-md-4'></div>
+                </form>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+
+            </div>
+
+        </>
+
     );
 }
 export default Login;
