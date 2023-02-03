@@ -2,6 +2,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/Accueil.css';
+
+
 
 const registerUser = () => {
     console.log("ok");
@@ -11,28 +14,26 @@ const registerUser = () => {
 
 const Enchere = ({ enchere }) => {
     return (
-        <div className="col-md-4">
-            <div className="thumbnail">
-                <div className="caption">
-                    <h3>{enchere.nom}</h3>
-                    <p>{enchere.description}</p>
-                    <form onSubmit={registerUser}>
-                        <p><Link to={"/FicheEnchere/"+enchere.idEnchere} className="btn btn-primary" value="Voir detail" /></p>
-                    </form>
-                </div>
-            </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
+            
+            <img src={enchere.phostos } alt="Image" class="mb-4 img-fluid" /> 
+            <h3 className='tm-text-primary mb-4' >{enchere.nom}</h3>
+            <p class="tm-text-secondary h5 mb-4">{enchere.description}</p>
+            <form onSubmit={registerUser}>
+                <p><Link to={"/FicheEnchere/" + enchere.idEnchere} value="Voir detail" >Voir detail</Link></p>
+            </form>
         </div>
     );
 }
 
 export const ListeEnchere = ({ Liste }) => {
     return (
-        <div className="col-md-7">
-            <div className="row">
-                {
-                    Liste.map(elements => <Enchere enchere={elements} />)
-                }
-            </div>
+        <div class="row tm-mb-74 tm-people-row">
+
+            {
+                Liste.map(elements => <Enchere enchere={elements} />)
+            }
+
         </div>
     )
 };
