@@ -13,8 +13,8 @@ function Login() {
             navige("/");
         }
     }, []);
-    const [email, setEmail] = useState("");
-    const [password, setpassword] = useState("");
+    const [email, setEmail] = useState("rabe@gmail.com");
+    const [password, setpassword] = useState("raberabe");
     const [error, setError] = useState("");
     const [wait, setWait] = useState(false);
     const initialize = () => {
@@ -58,11 +58,11 @@ function Login() {
                         <form id="contact-form" onSubmit={registerUser} class="tm-contact-form mx-auto col-md-4">
                             <div class="form-group">
                                 <label>Email:</label>
-                                <input type="text" onChange={(e) => { setEmail(e.target.value) }} />
+                                <input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                             </div>
                             <div class="form-group">
                                 <label>Mot de passe:</label>
-                                <input type="password" onChange={(e) => { setpassword(e.target.value) }} />
+                                <input type="password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
                             </div>
                             <div class="form-group tm-text-right">
                                 <button type="submit" class="btn btn-primary">Se connecter</button>
