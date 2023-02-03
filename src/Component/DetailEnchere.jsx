@@ -29,7 +29,7 @@ const Detail = ({ enchere }) => {
                     </div>
 
 
-
+                    {/* <img src={images} /> */}
                 </div>
                 <div className='col-md-6'>
                     <p>Nom produit:{enchere.nom}</p>
@@ -97,17 +97,17 @@ function ListeEncherir(props) {
     }
 }
 function Photo(props) {
-    if (props.photo == undefined) {
+    if (props.photo[0] == undefined) {
         return (
             <></>
         );
     }
     //.log("<img src="+props.photo[0]+">");
     return (
-        <div>
-            <img src={props.photo} />
+        <>
+            <img src={props.photo[0]} />
 
-        </div>
+        </>
     );
 
 }
