@@ -64,7 +64,7 @@ function Tablebody(props) {
 
         <tr>
             <td>{body.Client}</td>
-            <td>{body.Montant}</td>
+            <td>{body.Montant_encheri}</td>
         </tr>
 
     );
