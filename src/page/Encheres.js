@@ -10,6 +10,7 @@ import '../css/Enchere.css';
 
 import '../assets/fontawesome/css/all.min.css';
 import '../assets/css/templatemo-style.css';
+import images from '../assets/img/img-01.jpg';
 import { Link } from 'react-router-dom';
 
 
@@ -120,7 +121,7 @@ function Detail() {
                                         <input type="text" onChange={(e) => { setPrix(e.target.value); }} />
                                     </div>
                                 </div>
-                                
+
                                 <div className='col-md-4'></div>
                                 <div className='col-md-2'></div>
                                 <div className="col-md-6">

@@ -89,13 +89,8 @@ function Accueil() {
     if (wait === true) return (<p>Loading...</p>);
     return (
         <div class="container" >
-            <div 
-            style={{backgroundImage:`url(${images})` ,width:100,height:200 }}
-            ></div>
-              <div 
-            style={{backgroundImage:`url(${'../assets/img/img-01.jpg'})` ,width:100,height:200 }}
-            ></div>
-            <img src="../assets/img/img-01.jpg" alt='Bonjour'/>
+
+
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,13 +143,7 @@ function Accueil() {
 
                 <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll"  >
                     <form role="form" onSubmit={submit} class="d-flex tm-search-form">
-
-
-
                         <div>
-
-
-
                             <div class="row">
 
                                 <label>Mot Clé</label>
@@ -217,10 +206,6 @@ function Accueil() {
 
                         </div>
 
-
-
-
-
                     </form>
                 </div>
                 <div class="col-md-1" ></div>
@@ -230,6 +215,7 @@ function Accueil() {
 
 
             {/* ato */}
+            <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg"></div>
             <div class="row tm-mb-74 tm-people-row">
                 <ListeEnchere Liste={Liste} />
             </div>

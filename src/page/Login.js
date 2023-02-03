@@ -46,11 +46,43 @@ function Login() {
     }
     return (
         <>
-    
+            <div class="hold-transition login-page">
+                <div class="login-box">
+                    <div class="card">
+                        <div class="card-body login-card-body">
+                            <p class="login-box-msg">Sign in to start your session</p>
+                            {error && <p style={{ color: 'red' }}>{error}</p>}
+                            <form onSubmit={registerUser}method="post">
+                                <div class="input-group mb-3">
+                                <input type="text" onChange={(e) => { setEmail(e.target.value) }} class="form-control" placeholder="Email" />
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                <input type="password" onChange={(e) => { setpassword(e.target.value) }} class="form-control" placeholder="Password" />
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-lock"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <button type="submit" className="btn btn-primary" >Se connecter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
-        {/*  */}
+
+
+            {/*  */}
 
             <div class="flex-container">
 
@@ -58,16 +90,11 @@ function Login() {
                 <form onSubmit={registerUser} id="form">
                     <h1>Se connecter</h1>
                     <div className=" col-md-6">
-                        <div className="form-group">
-                            <label htmlFor="cat">Email</label>
-                            <input type="text" onChange={(e) => { setEmail(e.target.value) }} />
-                        </div>
+                        <input type="text" onChange={(e) => { setEmail(e.target.value) }} class="form-control" placeholder="Email" />
+
                     </div>
-                    <div className=" col-md-6">
-                        <div className="form-group">
-                            <label htmlFor="cat">Mot de passe</label>
-                            <input type="password" onChange={(e) => { setpassword(e.target.value) }} />
-                        </div>
+                    <div class="input-group mb-3">
+                        <input type="password" onChange={(e) => { setpassword(e.target.value) }} class="form-control" placeholder="Password" />
                     </div>
                     <div className='col-md-4'></div>
                     <div className='col-md-2'></div>
@@ -78,7 +105,7 @@ function Login() {
                     </div>
                     <div className='col-md-4'></div>
                 </form>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                
 
             </div>
 
