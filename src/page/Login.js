@@ -4,6 +4,7 @@ import '../css/Login.css';
 
 import '../assets/plugins/fontawesome-free/css/all.min.css';
 import '../assets/dist/css/adminlte.min.css';
+import Navbar from "../Component/Navbar";
 
 function Login() {
     const navige = useNavigate();
@@ -22,7 +23,7 @@ function Login() {
         const params = new URLSearchParams();
         params.append('email', email);
         params.append('mdp', password);
-        fetch(`http://localhost:8080/LoginClient?${params}`, {
+        fetch(`https://serveurenchere2-production.up.railway.app/LoginClient?${params}`, {
             method: 'POST',
         })
             .then(res => res.json())
@@ -44,70 +45,33 @@ function Login() {
         console.log("ok");
         initialize();
     }
+    if (localStorage.getItem("idClient") !== null || localStorage.getItem("token") !== null) {
+        navige("/")
+    }
     return (
         <>
-            <div class="hold-transition login-page">
-                <div class="login-box">
-                    <div class="card">
-                        <div class="card-body login-card-body">
-                            <p class="login-box-msg">Sign in to start your session</p>
+            <Navbar />
+            <div class="container-fluid tm-mt-100">
+                <div class="row tm-mb-100">
+                    <div class="col-md-4 col-12 mb-5">
+                        <h2 class="tm-text-primary mb-5 text-center">Login</h2>
+                        <form id="contact-form" onSubmit={registerUser} class="tm-contact-form mx-auto col-md-4">
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="text" onChange={(e) => { setEmail(e.target.value) }} />
+                            </div>
+                            <div class="form-group">
+                                <label>Mot de passe:</label>
+                                <input type="password" onChange={(e) => { setpassword(e.target.value) }} />
+                            </div>
+                            <div class="form-group tm-text-right">
+                                <button type="submit" class="btn btn-primary">Se connecter</button>
+                            </div>
                             {error && <p style={{ color: 'red' }}>{error}</p>}
-                            <form onSubmit={registerUser}method="post">
-                                <div class="input-group mb-3">
-                                <input type="text" onChange={(e) => { setEmail(e.target.value) }} class="form-control" placeholder="Email" />
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-envelope"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-group mb-3">
-                                <input type="password" onChange={(e) => { setpassword(e.target.value) }} class="form-control" placeholder="Password" />
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-lock"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <button type="submit" className="btn btn-primary" >Se connecter</button>
-                                </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
-            </div>
-
-
-
-
-
-            {/*  */}
-
-            <div class="flex-container">
-
-
-                <form onSubmit={registerUser} id="form">
-                    <h1>Se connecter</h1>
-                    <div className=" col-md-6">
-                        <input type="text" onChange={(e) => { setEmail(e.target.value) }} class="form-control" placeholder="Email" />
-
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" onChange={(e) => { setpassword(e.target.value) }} class="form-control" placeholder="Password" />
-                    </div>
-                    <div className='col-md-4'></div>
-                    <div className='col-md-2'></div>
-                    <div className="col-md-6">
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-primary" >Se connecter</button>
-                        </div>
-                    </div>
-                    <div className='col-md-4'></div>
-                </form>
-                
-
-            </div>
+            </div > 
 
         </>
 

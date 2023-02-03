@@ -16,7 +16,8 @@ import images from '../assets/img/img-01.jpg';
 
 
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../Component/Navbar';
 
 function Accueil() {
 
@@ -30,10 +31,13 @@ function Accueil() {
     const [Error, setError] = useState("");
     const [wait, setWait] = useState(false);
     var [ListeCategorie, setListeCategorie] = useState([]);
+    const [Liste, setListe] = useState([]);
+    const navige = useNavigate();
     const [nbrenchere, setNombre] = useState(0);
     useEffect(() => {
-        //setWait(true);
-        fetch(`http://localhost:8080/Categories/`)
+        setWait(true);
+        initialize();
+        fetch(`https://serveurenchere2-production.up.railway.app/Categories/`)
             .then(res => res.json())
             .then(res => {
                 if (res.erreur !== null) setError(res.erreur);
@@ -41,20 +45,7 @@ function Accueil() {
                     setListeCategorie(res.data);
                 }
             })
-        //initialize();
     }, []);
-    const [Liste, setListe] = useState([
-        {
-            idEnchere: "Enchere_1",
-            description: "OK be",
-            nom: "Enchere 1"
-        },
-        {
-            idEnchere: "Enchere_2",
-            description: "OK be2",
-            nom: "Enchere 2"
-        }
-    ]);
 
     const initialize = () => {
         const params = new URLSearchParams();
@@ -65,7 +56,7 @@ function Accueil() {
         params.append('Datedebut', datemin);
         params.append('DateFin', datemax);
         params.append('Statut', Statut);
-        fetch(`http://localhost:8080/RechercheEncheres?${params}`)
+        fetch(`https://serveurenchere2-production.up.railway.app/RechercheEncheres?${params}`)
             .then(res => res.json())
             .then(res => {
                 console.log(res)
@@ -83,61 +74,14 @@ function Accueil() {
 
     const submit = (event) => {
         event.preventDefault();
-        // setWait(true);
-        //initialize();
+        setWait(true);
+        initialize();
+        //setWait(false);
     }
     if (wait === true) return (<p>Loading...</p>);
     return (
         <div class="container" >
-
-
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-4 active" aria-current="page" href="contact.html">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <Link value="Voir detail" to={"/HistoriqueEnchere"} class="nav-link nav-link-1"> Historique</Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link value="Voir detail" to={"/Deconnexion"} class="nav-link nav-link-1"> Deconnexion</Link>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            {/* 
-            <nav class="navbar navbar-expand-lg ">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index.html">
-                        <i class=" mr-2"></i>
-                        Enchere
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <Link value="Voir detail" to={"/HistoriqueEnchere"} class="nav-link nav-link-1"> Historique</Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link value="Voir detail" to={"/Login"} class="nav-link nav-link-1"> Deconnexion</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav> */}
-
-
-            {/* <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg"></div> */}
+            <Navbar/>
             <div>
                 <div class="col-md-1" ></div>
 
@@ -145,17 +89,12 @@ function Accueil() {
                     <form role="form" onSubmit={submit} class="d-flex tm-search-form">
                         <div>
                             <div class="row">
-
                                 <label>Mot Clé</label>
                                 <div className="mb-3">
                                     <input type="text" className="form-control" style={{ marginRight: 10, width: 200 }} value={motsCle} name="motsClé" placeholder="Mot clé" onChange={(e) => { setMotCle(e.target.value); }} />
                                 </div>
-
                             </div>
-
-
                             <div class="row">
-
                                 <label>Categorie</label>
                                 <div className="mb-3">
                                     <select name="idCategorie" className="form-control" onChange={(e) => { setCategorie(e.target.value); }} style={{ marginRight: 10, width: 200 }} >
@@ -205,24 +144,13 @@ function Accueil() {
                             </div>
 
                         </div>
-
                     </form>
                 </div>
                 <div class="col-md-1" ></div>
             </div>
-
-
-
-
-            {/* ato */}
-            <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg"></div>
             <div class="row tm-mb-74 tm-people-row">
                 <ListeEnchere Liste={Liste} />
             </div>
-
-            {/* <p><Link value="Voir detail" to={"/HistoriqueEnchere"} class="nav-link nav-link-1"> Historique</Link>  </p>
-            <p><Link to={"/Login"}> Deconnexion </Link></p> */}
-
 
         </div >
     );
